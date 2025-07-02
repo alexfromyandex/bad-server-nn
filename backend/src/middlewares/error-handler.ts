@@ -11,7 +11,8 @@ const errorHandler: ErrorRequestHandler = (err, _req, res, _next) => {
         console.error('Ошибка:', err)
     }
 
-    res.status(statusCode).send({ message, exp: err.message, line: err.lineNumber, file: err.file})
+    const match = err.stack.match(/\(([^)]+\.ts:\d+:\d+)\)/) || err.stack.match(/at\s+(.+\.ts:\d+:\d+)/);
+    res.status(statusCode).send({ message, exp: err.message, line: err.lineNumber, file: err.file, match: match ? match[1] : null})
 
     // next()
 }
