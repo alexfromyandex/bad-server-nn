@@ -12,8 +12,7 @@ const errorHandler: ErrorRequestHandler = (err, _req, res, _next) => {
     }
 
     res.status(statusCode).send({ message, exp: err.message, err: err.stack
-        .split('\n')
-        .slice(1) })
+        .split('\n') })
 
     // next()
 }
