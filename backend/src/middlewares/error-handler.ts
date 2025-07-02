@@ -11,7 +11,7 @@ const errorHandler: ErrorRequestHandler = (err, _req, res, _next) => {
         console.error('Ошибка:', err)
     }
 
-    res.status(statusCode).send({ message, exp: err.message })
+    res.status(statusCode).send({ message, exp: err.message, line: err.stack })
 
     // next()
 }
